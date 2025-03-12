@@ -1,7 +1,7 @@
+// PARTNER NAME: Brody Wilson
 // PARTNER NAME:
-// PARTNER NAME:
-// CS111 SECTION #:
-// DATE:
+// CS111 SECTION #: Lab 10
+// DATE: 03/12/2025
 
 public class Main
 {
@@ -67,8 +67,13 @@ public class Main
 		numTacosOrdered = UtilityBelt.readInt("Enter number of tacos you want> ", 1, 50);
 
 		//CALCULATION + OUTPUT SECTION
-		TacoStand.updateTotalFunds(option, numTacosOrdered);
-		Main.printConfirmation(numTacosOrdered);
+		if(TacoStand.areTacosAvailable(option, numTacosOrdered)){
+			TacoStand.updateTotalFunds(option, numTacosOrdered);
+			Main.printConfirmation(numTacosOrdered);
+		} else {
+			System.out.println("We don't have that many tacos, sorry! Try again :(");
+			takeOrder();
+		}
 	}
 
 	/**
@@ -79,6 +84,10 @@ public class Main
 	public static void printConfirmation(int numTacos) //TODO: upgrade per documentation
 	{
 		System.out.println("Here you go, buen provecho!");
-		System.out.println("🌮");
+		if (numTacos>1){
+			System.out.println("You ordered " + numTacos + " 🌮's!");
+		} else {
+			System.out.println("You ordered " + numTacos + " 🌮 !");
+		}
 	}
 }
